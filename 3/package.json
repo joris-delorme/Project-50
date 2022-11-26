@@ -1,0 +1,23 @@
+{
+  "name": "project-3",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-glsl": "^2.8.0",
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^0.2.24",
+    "glsl-noise": "^0.0.0",
+    "glsl-rotate": "^2.0.0",
+    "gsap": "^3.11.3",
+    "split-type": "^0.3.3",
+    "three": "^0.146.0"
+  }
+}

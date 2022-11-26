@@ -1,0 +1,34 @@
+{
+  "name": "project-1",
+  "version": "1.0.0",
+  "description": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel src/index.html --open",
+    "clean": "rm -rf dist/*",
+    "build:parcel": "parcel build src/index.html --no-content-hash --no-source-maps --public-url ./",
+    "build": "npm run clean && npm run build:parcel",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joris-delorme/Project-50.git"
+  },
+  "author": "Joris Delorme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joris-delorme/Project-50/issues"
+  },
+  "homepage": "https://github.com/joris-delorme/Project-50#readme",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^0.2.21",
+    "gsap": "^3.11.3",
+    "split-type": "^0.3.3"
+  },
+  "web_accessible_resources": [
+    "tileset/*.json", "layer/*.json", "sound/*.ogg"
+  ]
+}

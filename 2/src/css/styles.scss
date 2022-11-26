@@ -1,0 +1,247 @@
+@import 'reset.scss';
+
+body {
+    font-family: meno-banner, serif;
+    overflow: hidden;
+    position: relative;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.line-container {
+    overflow: hidden;
+    padding: 2% 0;
+    & > span {
+        display: block;
+    }
+}
+
+.chars-container {
+    overflow: hidden;
+    padding: 2% 0;
+    display: inline-block;
+} 
+
+main {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100vh;
+}
+
+.overlay {
+    position: relative;
+    pointer-events: none;
+    grid-area: 1 / 1 / -1 / -1 ;
+    z-index: 100;
+}
+
+#hero {
+    background-color: #4f6c5e;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: 1 / 1 / 2 / 2 ;
+
+    &.hero--hidden {
+        .hero__navbar {
+            z-index: -1;
+        }
+    }
+
+    h1 {
+        font-size: 23vw;
+        text-align: center;
+        line-height: .75;
+
+        .hero__title-lastName {
+            font-size: 7.5vw;
+            transform: translateY(-20%);
+        }
+    }
+
+    .hero__navbar {
+        position: absolute;
+        top: 3%;
+        line-height: .75;
+        width: 100%;
+        display: grid;
+        grid-template-areas: 
+            "... title menu"
+        ;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        padding: 0 1rem;
+        z-index: 100;
+
+        .menu {
+            height: 64px;
+            width: 64px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            display: inline-grid;
+            place-items: center;
+            grid-area: menu;
+            justify-self: end;
+
+            svg {
+                transition: all 0.5s;
+
+            }
+
+            &:hover {
+                border-color: #619879;
+
+                svg {
+                    fill: #619879;
+                    transform: translateY(-20%);
+                }
+            }
+        }
+
+        .navbar__title {
+            text-align: center;
+            grid-area: title;
+
+            .navbar__title-desc {
+                opacity: 0.5;
+                white-space: nowrap;
+                .line-container {
+                    padding: 0;
+                    span {
+                        height: 1rem;
+                    }
+                }
+            }
+    
+            .navbar__title-main {
+                font-size: clamp(1rem, 5vw, 2rem);
+            }
+        }
+    }
+}
+
+.page {
+    opacity: 0;
+    min-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-areas: 
+        "... header back"
+        "... menu ..."
+        "... ... ..."
+    ;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 70px 1fr 70px;
+    padding: 1rem 4rem;
+    background-color: #000;
+    color: #fff;
+    grid-area: 1 / 1 / -1 / -1 ;
+    z-index: 10;
+    pointer-events: none;
+    &.active {
+        pointer-events: initial;
+    }
+
+    .tiles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(25deg);
+
+        .tiles__line {
+            display: flex;
+            animation: runner 10s linear infinite;
+            opacity: 0.5;
+            transform: translateX(25%);
+
+            &:nth-child(2) {
+                animation-duration: 16s;
+                transform: translateX(-25%);
+                animation-name: runnerReverse;
+            }
+            &:nth-child(3) {
+                animation-duration: 22s;
+            }
+
+            .tiles__line-img {
+                height: 30vh;
+                width: 30vh;
+                border-radius: 50%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 3vw;
+                flex: none;
+            }
+            .tiles__line-img--large {
+                width: 100vh;
+                border-radius: 20vh;
+            }
+        }
+    }
+
+    .back-btn {
+        grid-area: back;
+        align-self: center;
+        justify-self: end;
+        fill: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+
+        svg {
+            transition: all 0.5s;
+            stroke: #fff;
+            transform: scale(1.5);
+        }
+
+        &:hover {
+            svg {
+                stroke: #619879;
+                transform: rotate(20deg) scale(1.5);
+            }
+        }
+    }
+
+    header {
+        grid-area: header;
+        justify-self: center;
+        align-self: center;
+        font-size: clamp(1rem, 5vw, 2rem);
+        cursor: default;
+        position: relative;
+        z-index: 10;
+    }
+
+    ul {
+        grid-area: menu;
+        align-self: center;
+        justify-self: center;
+        position: relative;
+        z-index: 10;
+        li {
+            font-size: clamp(5rem, 5.5vw, 10rem);
+            white-space: nowrap;
+            cursor: pointer;
+            color: #7ec59d;
+            line-height: .9;
+            text-align: center;
+
+            &:hover {
+                color: #a8fecd;
+            }
+        }
+    }
+}
+
+@keyframes runner {
+    to {
+        transform: translateX(-25%);
+    }
+}
+@keyframes runnerReverse {
+    to {
+        transform: translateX(25%);
+    }
+}

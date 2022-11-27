@@ -40,8 +40,8 @@ export default new class Gl {
     }
 
     resize() {
-        let width = window.innerWidth
-        let height = window.innerHeight
+        let width = document.body.getBoundingClientRect().width
+        let height = document.body.getBoundingClientRect().height
 
         this.camera.aspect = width / height
         this.renderer.setSize(width, height)

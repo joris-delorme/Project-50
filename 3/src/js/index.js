@@ -27,7 +27,7 @@ const addBlobs = () => {
     const blob3 = new Blob(0.8, 0.5, 0.1, 2.0, 0.05, Math.PI * 0.5);
 
     blob1.position.set(0, 5, -7);
-    blob2.position.set(3.3, -15.7, -30);
+    blob2.position.set(3.3, -15.7, -35);
     blob3.position.set(-1, -4, 4);
 
     blob1.rotation.set(0, 0, 0);
@@ -73,9 +73,7 @@ const revealAnimation = () => {
         onStart: () => lenis.stop()
     })
         // init
-        .set(scrollLine, {
-            scaleY: 0
-        })
+        .set(scrollLine, {scaleY: 0})
         .set(headerMenu, {opacity: 0, y: -20})
         .set(logoMenu, {opacity: 0})
         .add(() => titleInner.out(false))
@@ -97,6 +95,7 @@ const revealAnimation = () => {
         .add(() => {
             Gl.isReveal = true
         })
+        .add(() => document.body.classList.remove('loading'), 'start')
         // Text
         .add(() => titleInner.in(), 'text')
         .add(() => subTitleInner.in(), '-=1.4')
